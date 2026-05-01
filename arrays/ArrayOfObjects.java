@@ -37,9 +37,14 @@ class Student {
             students[1] = s2;
             students[2] = s3;
 
-            for (int i = 0; i < students.length; i++) {
-                System.out.println(students[i].name + " " + students[i].rollNum + " " + students[i].Attendence);
+            // for (int i = 0; i < students.length; i++) {
+            // System.out.println(students[i].name + " " + students[i].rollNum + " " +
+            // students[i].Attendence);
 
+            // }
+
+            for (Student stud : students) {
+                System.out.println(stud.name + " " + stud.rollNum + " " + stud.Attendence);
             }
 
         }
