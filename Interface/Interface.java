@@ -62,6 +62,12 @@ class Bct {
  * interface -? interface, extends
  *
  *
+ * | Type | Description |
+ * | -------------------- | ---------------------------------------- |
+ * | Normal Interface | One or more abstract methods |
+ * | Functional Interface | Exactly one abstract method |
+ * | Marker Interface | No methods |
+ * | Nested Interface | Interface inside another class/interface |
  *
- *
+ * 
  */
