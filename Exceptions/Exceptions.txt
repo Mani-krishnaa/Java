@@ -1,0 +1,147 @@
+========================================
+JAVA EXCEPTIONS
+========================================
+
+An Exception is an unwanted or unexpected event that occurs during program
+execution and disrupts the normal flow of instructions. Java provides a
+robust exception handling mechanism to deal with runtime errors.
+
+----------------------------------------
+EXCEPTION HIERARCHY
+----------------------------------------
+
+java.lang.Object
+  └── java.lang.Throwable
+        ├── java.lang.Error         (serious system-level problems)
+        └── java.lang.Exception     (recoverable problems)
+              └── RuntimeException  (unchecked exceptions)
+
+----------------------------------------
+TYPES OF EXCEPTIONS
+----------------------------------------
+
+1. CHECKED EXCEPTIONS (Compile-time Exceptions)
+   -----------------------------------------------
+   - Checked by the compiler at compile time.
+   - Must be handled using try-catch or declared with throws keyword.
+   - Extend java.lang.Exception (but NOT RuntimeException).
+
+   Examples:
+   - IOException          – file read/write failures
+   - SQLException         – database access errors
+   - FileNotFoundException – file not found
+   - ClassNotFoundException – class not found at runtime
+   - InterruptedException – thread interrupted
+
+   Example:
+       try {
+           FileReader file = new FileReader("test.txt");
+       } catch (FileNotFoundException e) {
+           System.out.println("File not found: " + e.getMessage());
+       }
+
+
+2. UNCHECKED EXCEPTIONS (Runtime Exceptions)
+   ---------------------------------------------
+   - NOT checked at compile time; occur at runtime.
+   - Extend java.lang.RuntimeException.
+   - Do not need to be declared or caught (but can be).
+
+   Examples:
+   - NullPointerException        – accessing a null reference
+   - ArrayIndexOutOfBoundsException – invalid array index
+   - ArithmeticException         – e.g., divide by zero
+   - ClassCastException          – invalid type cast
+   - NumberFormatException       – invalid string-to-number conversion
+   - StackOverflowError          – infinite recursion
+   - IllegalArgumentException    – method received invalid argument
+
+   Example:
+       int result = 10 / 0;  // throws ArithmeticException
+
+
+3. ERRORS
+   --------
+   - Represent serious problems that a program should NOT try to catch.
+   - Extend java.lang.Error.
+   - Usually caused by JVM-level issues.
+
+   Examples:
+   - OutOfMemoryError    – JVM runs out of heap memory
+   - StackOverflowError  – call stack overflow (deep recursion)
+   - VirtualMachineError – JVM is broken or out of resources
+   - AssertionError      – assertion fails
+
+----------------------------------------
+EXCEPTION HANDLING KEYWORDS
+----------------------------------------
+
+   try     – block of code to monitor for exceptions
+   catch   – handles a specific exception
+   finally – always executes (cleanup code), exception or not
+   throw   – manually throw an exception
+   throws  – declares exceptions a method might throw
+
+   Syntax:
+       try {
+           // risky code
+       } catch (ExceptionType e) {
+           // handle exception
+       } finally {
+           // always runs
+       }
+
+----------------------------------------
+CUSTOM (USER-DEFINED) EXCEPTIONS
+----------------------------------------
+
+   You can create your own exception by extending Exception or RuntimeException.
+
+   Example:
+       class InvalidAgeException extends Exception {
+           public InvalidAgeException(String message) {
+               super(message);
+           }
+       }
+
+       void validate(int age) throws InvalidAgeException {
+           if (age < 18) {
+               throw new InvalidAgeException("Age must be 18 or above.");
+           }
+       }
+
+----------------------------------------
+MULTI-CATCH (Java 7+)
+----------------------------------------
+
+   Catch multiple exception types in a single catch block:
+
+       try {
+           // code
+       } catch (IOException | SQLException e) {
+           System.out.println("Exception: " + e.getMessage());
+       }
+
+----------------------------------------
+TRY-WITH-RESOURCES (Java 7+)
+----------------------------------------
+
+   Automatically closes resources (implements AutoCloseable):
+
+       try (FileReader fr = new FileReader("file.txt")) {
+           // use fr
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+
+========================================
+SUMMARY TABLE
+========================================
+
+| Type              | Subclass of       | Checked? | Example                    |
+|-------------------|-------------------|----------|----------------------------|
+| Checked Exception | Exception         | Yes      | IOException, SQLException  |
+| Unchecked Exception | RuntimeException| No       | NullPointerException       |
+| Error             | Error             | No       | OutOfMemoryError           |
+
+========================================
