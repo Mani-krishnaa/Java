@@ -59,7 +59,7 @@ class Bct {
  *
  * class -> class, extends
  * class -> interface, implements
- * interface -? interface, extends
+ * interface -> interface, extends
  *
  *
  * | Type | Description |
@@ -69,5 +69,5 @@ class Bct {
  * | Marker Interface | No methods |
  * | Nested Interface | Interface inside another class/interface |
  *
- * 
+ *
  */
